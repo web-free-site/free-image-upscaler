@@ -1,0 +1,160 @@
+/* Family palette, from ../SLOP-TIMELINE-UI.md §1 (role names kept). Dark only, like
+   slop-vector-editor. The ARTWORK is unaffected: images sit on a light checkerboard, so black
+   line art stays visible. Plain CSS custom properties rather than Tailwind @theme: this app's
+   components are scoped CSS, and the guide allows that as long as colours are role tokens. */
+:root {
+  color-scheme: dark;
+  accent-color: var(--color-accent);
+  --color-ground: #101013;
+  --color-panel: #1e1e22;
+  --color-raised: #2d2d33;
+  --color-line: #2e2e35;
+  --color-text: #f4f4f5;
+  --color-muted: #a1a1aa;
+  --color-accent: #5b8cff;
+  --color-accent-hover: #7aa3ff;
+  --color-accent-text: #121212;
+  --color-danger: #f87171;
+  --color-warn: #d5b75d;
+  --color-disabled: #52525b;
+  /* Artwork backdrop (transparency checkerboard), light like the vector editor's artboard. */
+  --color-check-a: #ffffff;
+  --color-check-b: #e4e4e7;
+  --font-sans: system-ui, sans-serif;
+  /* Control height: 24px on a mouse-only machine, 32px wherever a finger can reach the screen.
+     `any-pointer`, not `pointer`: an iPad with a trackpad still has its touch screen. */
+  --ctl-h: 24px;
+}
+@media (any-pointer: coarse) {
+  :root {
+    --ctl-h: 32px;
+  }
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-text);
+  background: var(--color-ground);
+  overscroll-behavior: none;
+}
+
+/* Range inputs (guide §6): 4px track, 12px round thumb. `appearance: none` is the only way to
+   size the thumb, and it loses the browser's filled track, so the fill is rebuilt as a gradient
+   from `--fill-from`/`--fill-to` (see sliderFill.ts). The fill is the accent mixed 50% into the
+   track so it does not compete with the thumb. */
+input[type='range'] {
+  --slider-track: var(--color-raised);
+  --slider-fill: color-mix(in srgb, var(--color-accent) 50%, var(--slider-track));
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  margin: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--slider-track) 0 var(--fill-from, 0%),
+    var(--slider-fill) var(--fill-from, 0%) var(--fill-to, 0%),
+    var(--slider-track) var(--fill-to, 0%) 100%
+  );
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+}
+input[type='range']::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
+}
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+}
+
+/* Fields are raised: an input must not be the colour of the surface it sits on (guide §3). */
+select {
+  height: var(--ctl-h);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-raised);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: var(--ctl-h);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-raised);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 0 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+button:hover:not(:disabled) {
+  border-color: var(--color-muted);
+}
+button:disabled {
+  color: var(--color-disabled);
+  cursor: default;
+}
+.btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+.btn-primary:disabled {
+  background: var(--color-raised);
+  border-color: var(--color-line);
+}
+
+/* THE on-state, defined once (guide §6: one idiom per app): toggles fill with the accent. */
+.ui-on,
+.ui-on:hover:not(:disabled) {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-text);
+}
+.ui-on:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+/* Focus rings are a keyboard affordance: none after a click, one consistent ring for keys. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
