@@ -132,7 +132,7 @@ const BLOCK = `
   <div class="wf-mt-grid">
     <div class="wf-mt-cat wf-mt-guides"><h3>Guides on this site</h3><ul>${guidesHtml}</ul></div>
     ${catsHtml}
-  </div>
+  <h3>Time</h3><ul><li><a href="https://free-time-zone-converter.web-free.site/?ref=image-upscaler">Free Time Zone Converter</a></li></ul><h3>Drawing</h3><ul><li><a href="https://free-whiteboard.web-free.site/?ref=image-upscaler">Free Whiteboard</a></li></ul><h3>Random &amp; pickers</h3><ul><li><a href="https://free-spin-wheel.web-free.site/?ref=image-upscaler">Free Spin Wheel</a></li></ul></div>
 </aside>
 `;
 
