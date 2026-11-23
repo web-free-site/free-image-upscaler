@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Free client-side AI image upscaler (Real-ESRGAN) — nothing uploaded",
+  "description": "Free client-side AI image upscaler (Real-ESRGAN) \u2014 nothing uploaded",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "homepage": "https://free-image-upscaler.web-free.site/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-more-tools.mjs",
+    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-more-tools.mjs && node scripts/inject-hub-legal.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
