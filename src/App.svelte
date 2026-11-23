@@ -14,6 +14,9 @@
   import { encodeImage, exportName, type ExportFormat } from './lib/exportImage'
   import { deliverFile, saveImage } from './lib/saveFile'
   import ShareReadyDialog from './lib/ShareReadyDialog.svelte'
+  import AdSlot from './lib/ads/AdSlot.svelte'
+
+  let { fullscreen = $bindable(false) } = $props()
 
   const client = new UpscalerClient()
   const viewport = new Viewport()
@@ -62,6 +65,10 @@
   $effect(() => {
     void [viewW, viewH, viewsW, viewsH, twoColumn]
     if (!viewport.touched) fit()
+  })
+
+  $effect(() => {
+    fullscreen = !!original
   })
 
   async function handleFile(file: File) {
@@ -213,7 +220,7 @@
 />
 <input
   type="file"
-  accept="image/*"
+  accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif,image/*"
   hidden
   bind:this={imageInput}
   onchange={() => {
@@ -226,16 +233,17 @@
 {#if !original}
   <main class="empty">
     <div class="intro">
-      <h1>slop-image-upscaler</h1>
+      <h1>Free Image Upscaler</h1>
       <p>
         Upscale photos and anime ×2 or ×4 with Real-ESRGAN, running on your GPU in the browser.
         Nothing is uploaded.
       </p>
       <Dropzone onfile={handleFile} error={dropError} />
+      <AdSlot adSlot="nativeBelowResult" className="ad-native-home" label="Sponsored" />
     </div>
   </main>
 {:else}
-  <div class="app-grid">
+  <div class="app-grid" class:fullscreen>
     <div class="views" class:side={twoColumn} bind:clientWidth={viewsW} bind:clientHeight={viewsH}>
       {#if mode === 'split'}
         <CompareView {original} {result} {viewport} width={viewW} height={viewH} />
@@ -275,6 +283,7 @@
         onnew={() => imageInput.click()}
         onsettings={settingsChanged}
       />
+      <AdSlot adSlot="nativeBelowResult" className="ad-native-panel" label="Sponsored" />
     </aside>
   </div>
   {#if dropping}<div class="drop-overlay"><span>Drop to open</span></div>{/if}
@@ -319,7 +328,15 @@
     display: grid;
     grid-template-columns: 1fr 300px;
     grid-template-rows: minmax(0, 1fr);
+    height: min(100vh, 100%);
+    min-height: 480px;
+  }
+  .app-grid.fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
     height: 100vh;
+    min-height: 0;
   }
   .views {
     display: grid;

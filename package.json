@@ -1,26 +1,25 @@
 {
-  "name": "slop-image-upscaler",
+  "name": "free-image-upscaler",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-  "description": "Client-side AI image upscaler (Real-ESRGAN) — nothing uploaded",
+  "description": "Free client-side AI image upscaler (Real-ESRGAN) — nothing uploaded",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meigo/slop-image-upscaler.git"
+    "url": "https://github.com/web-free-site/free-image-upscaler.git"
   },
-  "homepage": "https://slop-image-upscaler.meigo.workers.dev/",
+  "homepage": "https://free-image-upscaler.web-free.site/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-more-tools.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json && tsc -p tsconfig.tests.json",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "deploy": "npm run build && wrangler deploy"
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@lucide/svelte": "^1.48.0",

@@ -50,7 +50,7 @@
 
 <div class="cp">
   <header class="top">
-    <strong>slop-image-upscaler</strong>
+    <strong>Free Image Upscaler</strong>
     <button class="icon-btn" onclick={onnew} title="Open another image"
       ><ImagePlus size={16} /></button
     >

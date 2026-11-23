@@ -5,7 +5,7 @@ import type { Ep } from '../types'
 // come from jsDelivr, pinned to the exact version bundled here.
 const CDN = `https://cdn.jsdelivr.net/npm/onnxruntime-web@${ort.env.versions.web}`
 ort.env.wasm.wasmPaths = `${CDN}/dist/`
-// Threads need SharedArrayBuffer, i.e. a cross-origin-isolated page (public/_headers).
+// Multi-threaded WASM needs crossOriginIsolated; without COEP/COOP we stay single-threaded.
 ort.env.wasm.numThreads = self.crossOriginIsolated
   ? Math.min(8, navigator.hardwareConcurrency || 4)
   : 1

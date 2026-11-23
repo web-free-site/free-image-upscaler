@@ -1,0 +1,11 @@
+name = "free-image-upscaler"
+compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./dist"
+html_handling = "auto-trailing-slash"
+not_found_handling = "none"
+
+[[routes]]
+pattern = "free-image-upscaler.web-free.site"
+custom_domain = true
