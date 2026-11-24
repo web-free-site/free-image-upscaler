@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const REF = "image-upscaler";
-const tool = (sub) => `https://${sub}.web-free.site/?ref=${REF}`;
+const tool = (sub, path = "/") => `https://${sub}.web-free.site${path}?ref=${REF}`;
 
 const guidesHtml = [
   ["How to upscale an image in the browser", "/how-to-upscale-an-image-in-the-browser"],
@@ -46,7 +46,7 @@ const categories = [
   {
     title: "Calculators &amp; currency",
     items: [
-      ["Free Online Calculator", tool("free-online-calculator")],
+      ["Free Online Calculator", tool("free-online-calculator", "/en/")],
       ["Free Currency Converter", tool("free-currency-converter")],
       ["Free Unit Converter", tool("free-unit-converter")],
       ["Free Loan Calculator", tool("free-loan-calculator")],
