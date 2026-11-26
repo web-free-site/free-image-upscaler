@@ -368,10 +368,11 @@
     background: var(--color-panel);
   }
   .empty {
-    height: 100vh;
+    min-height: min(70vh, 520px);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem 1rem;
   }
   .intro {
     max-width: 440px;

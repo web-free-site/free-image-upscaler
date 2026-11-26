@@ -1,0 +1,39 @@
+{
+  "guideUrl": "https://web-free.site/guides/upscale-image-ai-browser-free/?ref=image-upscaler",
+  "faq": [
+    {
+      "q": "Does Free Image Upscaler upload my photos?",
+      "a": "No. Upscaling runs entirely in your browser with WebGPU or WASM through onnxruntime-web. Your image file never leaves your device, and we do not operate a server-side upscaling API."
+    },
+    {
+      "q": "What scale factors can I choose?",
+      "a": "You can enlarge images ×2 or ×4 using Real-ESRGAN models tuned for general photographs or anime-style illustrations. Pick the scale in the control panel before you run the model."
+    },
+    {
+      "q": "Is Free Image Upscaler free to use?",
+      "a": "Yes. There is no sign-up, no watermark on downloads, and no paid upscaling tier. The tool is funded by optional display ads and is part of the web-free.site family of browser utilities."
+    },
+    {
+      "q": "Which file formats work?",
+      "a": "You can open common raster formats such as JPEG, PNG, WebP, and HEIC where your browser supports them. Export the upscaled result as PNG or JPEG from the save controls."
+    },
+    {
+      "q": "What hardware does the upscaler use?",
+      "a": "The app prefers WebGPU when your browser and GPU support it for faster inference, and falls back to WebAssembly so most modern desktops, laptops, and many phones can still run it."
+    }
+  ],
+  "steps": [
+    "Open this page and drop a photo onto the upload area, or click to choose a file from your device.",
+    "Select the Real-ESRGAN model: General for everyday photos, or Anime for illustrations and clean line art.",
+    "Choose ×2 for a moderate boost or ×4 when you need much larger pixel dimensions for print or cropping.",
+    "Click Upscale and wait while the ONNX model loads once per session, then tiles are processed on your GPU or CPU.",
+    "Compare the original and result with the split or side-by-side view, then download PNG or JPEG when you are satisfied."
+  ],
+  "useCases": [
+    "Enlarging social graphics or blog hero images without paying for a desktop editor subscription.",
+    "Preparing a snapshot for print when the file is slightly too small for 300 DPI at the target size.",
+    "Sharpening anime stills, game sprites, or flat illustrations where the anime-tuned model shines.",
+    "Upscaling scanned documents or slides for legible text in a presentation or PDF export.",
+    "Quickly testing whether a blurry phone photo will look acceptable at poster size before ordering prints."
+  ]
+}
