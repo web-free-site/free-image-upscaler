@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import { buildHomeSeoBodyHtml, homeFaqForJsonLd } from "./home-seo-html.mjs";
 
 const HOST = "https://free-image-upscaler.web-free.site";
 const SITE_NAME = "Free Image Upscaler";
@@ -15,28 +16,7 @@ if (!fs.existsSync(indexPath)) {
 
 const baseHtml = fs.readFileSync(indexPath, "utf8");
 
-const homeFaq = [
-  {
-    q: "Does Free Image Upscaler upload my photos?",
-    a: "No. Upscaling runs entirely in your browser with WebGPU or WASM. Your image file never leaves your device.",
-  },
-  {
-    q: "What scale factors are supported?",
-    a: "You can upscale images ×2 or ×4 using Real-ESRGAN models optimized for general photos and anime-style artwork.",
-  },
-  {
-    q: "Is Free Image Upscaler really free?",
-    a: "Yes. There is no sign-up, no API key, and no paid upscaling service behind the tool.",
-  },
-  {
-    q: "Which image formats can I use?",
-    a: "Common formats such as JPEG, PNG, and WebP work locally in the browser. You can download the result as PNG or JPEG.",
-  },
-  {
-    q: "What hardware does it use?",
-    a: "The app prefers WebGPU when available and falls back to onnxruntime-web WASM so most modern desktop and mobile browsers can run it.",
-  },
-];
+const homeFaq = homeFaqForJsonLd();
 
 const pages = [
   {
@@ -202,6 +182,8 @@ function patchHome() {
   if (!html.includes(marker)) {
     html = html.replace("</head>", `${jsonLd}\n  </head>`);
   }
+  const homeBody = `<section id="seo-prerender" class="seo-prerender"><h1>Free Image Upscaler</h1>${buildHomeSeoBodyHtml()}</section>`;
+  html = injectMount(html, homeBody);
   fs.writeFileSync(indexPath, html);
 }
 
